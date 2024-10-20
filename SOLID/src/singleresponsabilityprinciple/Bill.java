@@ -38,6 +38,8 @@ public class Bill {
 			billTotal = (InitialAmount - totalDeduction) + totalVAT;
 	}
 
+	
+	
 	// Método que calcula el total de la factura
 	public void billTotalCalcRefactorizado() {
 		// Calculamos la deducción
@@ -45,16 +47,22 @@ public class Bill {
 		// Calculamos el IVA
 		totalVAT = new VAT().calculateVAT(InitialAmount);
 		// Calculamos el total
-		billTotal = new Total().calculateTotal(InitialAmount, totalDeduction, totalVAT);
+		billTotal = (InitialAmount - totalDeduction) + totalVAT;
 	}
 
 	public void newBillTotalCalcRedactorizado() {
+		
 		// Calculamos la deducción
 		totalDeduction = new Deduction().newCalculateDeduction(InitialAmount, deductionPercentage);
+		
 		// Calculamos el IVA
 		totalVAT = new VAT().newCalculateVAT(InitialAmount);
+		
 		// Calculamos el total
-		billTotal = new Total().newCalculateTotal(code, InitialAmount, totalDeduction, totalVAT);
+		if (Integer.parseInt(code) < 10)
+			billTotal = InitialAmount - totalDeduction;
+		else
+			billTotal = (InitialAmount - totalDeduction) + totalVAT;
 	}
 
 }
