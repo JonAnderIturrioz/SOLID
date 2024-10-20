@@ -6,7 +6,6 @@ public class VAT {
 	}
 
 	public float newCalculateVAT(float initialAmount) {
-		// TODO Auto-generated method stub
-		return 0;
+		return (float) (initialAmount*0.21);
 	}
 }
